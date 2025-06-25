@@ -18,6 +18,7 @@ import { logger } from '@/lib/winston';
 /**
  * Router
  */
+import v1Routes from '@/routes/v1';
 
 /**
  * Types
@@ -76,6 +77,8 @@ app.use(limiter);
 (async () => {
   try {
     await connectToDatabase();
+
+    app.use('/api/v1', v1Routes);
 
     app.get('/', (req, res) => {
       res.json({
